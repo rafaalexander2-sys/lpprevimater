@@ -1052,7 +1052,11 @@ var MENSAGENS = {
     return m ? m.pop() : "";
   }
 
-  var adId = pega("utm_content") || pega("ad_id");
+  /* O ID do anúncio só entra na mensagem se for numérico. utm_content vindo
+     de post orgânico costuma trazer texto, e um "[LP-bio]" quebraria o regex
+     do robô por inteiro, não só a leitura do ID. */
+  var bruto = pega("utm_content") || pega("ad_id");
+  var adId = /^[0-9]{6,}$/.test(bruto) ? bruto : "";
 
   window.PREV = {
     adId: adId,
