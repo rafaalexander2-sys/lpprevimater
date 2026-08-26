@@ -1,0 +1,27 @@
+# Previmater
+
+> Assessoria previdenciária particular, sediada em Curitiba (PR, Brasil), especializada
+> exclusivamente em salário-maternidade. Mais de 12 anos de atuação, mais de 600 mães
+> atendidas e mais de R$ 5 milhões em benefícios concedidos. Atende todo o Brasil por WhatsApp.
+
+## Fatos verificáveis
+
+- **Serviço:** análise, montagem e acompanhamento de pedidos de salário-maternidade.
+- **Custo:** a análise do caso é gratuita. Honorários apenas em caso de êxito, nada adiantado.
+- **Prazo do benefício:** até 5 anos contados do nascimento.
+- **Valor do benefício:** quatro parcelas, que costumam somar de R$ 6.484 a mais de R$ 14 mil,
+  conforme o salário de contribuição. O piso deriva de quatro salários mínimos de 2026 (R$ 1.621).
+- **Requisito central:** ter contribuído para a Previdência em algum momento antes do parto —
+  com carteira assinada, como MEI ou como autônoma. Gestantes que ainda não contribuíram
+  podem se filiar e cumprir carência antes do parto.
+- **Quem não se enquadra:** mãe cujo bebê já nasceu e que nunca contribuiu; parto há mais de 5 anos.
+- **Natureza jurídica:** empresa privada. Não é órgão público e não possui vínculo com o governo.
+
+## Páginas
+
+- [Página principal](https://previmater.com.br/): quem pode receber, prazos, valores e dúvidas frequentes.
+- [Quem somos](https://previmater.com.br/sobre.html): histórico, números e modelo de cobrança.
+- [Contato](https://previmater.com.br/contato.html): WhatsApp, e-mail, endereço e horário.
+- [Termos de uso](https://previmater.com.br/termos.html)
+- [Política de privacidade](https://previmater.com.br/privacidade.html)
+- [Política de cookies](https://previmater.com.br/cookies.html)
