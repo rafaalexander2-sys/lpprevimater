@@ -322,6 +322,10 @@
   .figura[data-proporcao="16-9"]{aspect-ratio:16/9}
   .figura[data-proporcao="1-1"]{aspect-ratio:1/1}
   .figura.ausente{display:none}
+  /* ilustração chapada não é foto: cartão com sombra em volta de um desenho
+     de traço fino sobre branco lê como moldura vazia */
+  .figura-solta{background:transparent;box-shadow:none;border-radius:0}
+  .figura-solta img{object-fit:contain}
   .escuro .figura,.preta .figura{background:rgba(255,255,255,.05);box-shadow:0 20px 44px -20px rgba(0,0,0,.6)}
   .figura-legenda{margin:12px 0 0;font-size:13.5px;color:var(--tinta-45);line-height:1.55;text-align:center}
   .escuro .figura-legenda{color:rgba(255,255,255,.68)}
@@ -782,11 +786,11 @@
     <h2 class="titulo">Como funciona</h2>
     <p class="sub">Sem juntar papelada e sem pagar nada adiantado.</p>
 
-    <figure class="figura" data-proporcao="16-9" style="background:transparent">
+    <figure class="figura figura-solta" style="aspect-ratio:1627/445">
       <picture>
         <source type="image/avif" srcset="/imagens/duas-datas.avif">
         <img src="/imagens/duas-datas.jpg" alt="Linha do tempo com dois marcos: a saída do serviço e o nascimento do bebê"
-             width="1600" height="901" loading="lazy" decoding="async" data-figura>
+             width="1627" height="445" loading="lazy" decoding="async" data-figura>
       </picture>
       <figcaption class="figura-legenda">São essas duas datas que decidem o caso: quando a contribuição parou e quando o bebê nasceu.</figcaption>
     </figure>
