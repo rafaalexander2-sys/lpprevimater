@@ -453,7 +453,11 @@
   .revela[data-atraso="2"]{transition-delay:160ms}
   .revela[data-atraso="3"]{transition-delay:240ms}
 
-  [data-modo]{animation:entra var(--dur-ui) var(--saida) both}
+  /* O garfo mostra um painel por vez. Sem estas três regras os dois ficam
+     visíveis e clicar na aba não muda nada na tela. */
+  [data-modo]{display:none;animation:entra var(--dur-ui) var(--saida) both}
+  body[data-caso="bebe"] [data-modo="bebe"]{display:block}
+  body[data-caso="gravida"] [data-modo="gravida"]{display:block}
   @keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
   @supports (interpolate-size:allow-keywords){
