@@ -3,18 +3,21 @@
    e não pode depender de uma segunda requisição para pintar a primeira tela. */
 
 :root{
-  --teal:#037682;
-  --teal-esc:#025B64;
-  --teal-claro:#E6F2F3;
-  --amarelo:#EFEA44;
-  --amarelo-esc:#DCD62E;
+  --teal:#007C85;
+  --teal-esc:#005F66;
+  --teal-claro:#E5F1F2;
+  --rosa:#FC9FA7;
+  --rosa-esc:#D9515F;
+  --rosa-claro:#FFF0F1;
+  --rosa-luz:#FECFD3;
+  --rosa-texto:#B93144;
   --branco:#FFFFFF;
   --cinza:#F4F4F4;
   --tinta:#212529;
   --tinta-2:#5A6169;
   --preto:#000000;
   --borda:#DFE3E6;
-  --tit:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --tit:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --corpo:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
@@ -29,19 +32,18 @@ body{
 }
 
 :focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px}
-.topo :focus-visible,footer :focus-visible{outline-color:var(--amarelo)}
+.topo :focus-visible,footer :focus-visible{outline-color:#FFFFFF}
 
 .wrap{max-width:720px;margin:0 auto;padding:0 20px}
 
 /* ---------- TOPO ---------- */
 .topo{background:var(--teal);color:var(--branco);padding:18px 0}
 .topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.topo a.marca{
-  font-family:var(--tit);font-size:21px;font-weight:800;
-  color:var(--branco);text-decoration:none;letter-spacing:-.02em
-}
+.topo a.marca{display:block;line-height:0}
+.topo a.marca img{height:30px;width:auto;display:block}
 .topo a.voltar{
-  color:var(--teal);background:var(--amarelo);text-decoration:none;
+  color:var(--tinta);background:var(--rosa);
+  box-shadow:0 0 0 2px rgba(255,255,255,.72);text-decoration:none;
   font-family:var(--tit);font-size:14px;font-weight:700;
   padding:9px 15px;border-radius:7px;white-space:nowrap
 }
@@ -87,16 +89,16 @@ a{color:var(--teal)}
 .numeros{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0}
 @media (min-width:640px){.numeros{grid-template-columns:repeat(4,1fr)}}
 .num{background:var(--teal);border-radius:11px;padding:17px 10px;text-align:center}
-.num b{display:block;font-family:var(--tit);font-size:25px;font-weight:800;color:var(--amarelo);line-height:1.1}
+.num b{display:block;font-family:var(--tit);font-size:25px;font-weight:800;color:var(--rosa-luz);line-height:1.1}
 .num span{display:block;margin-top:6px;font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.94)}
 
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:16px 26px;background:var(--amarelo);color:var(--tinta);
+  padding:16px 26px;background:var(--rosa);color:var(--tinta);
   font-family:var(--tit);font-size:17px;font-weight:700;
-  text-decoration:none;border-radius:10px;box-shadow:0 3px 0 var(--amarelo-esc)
+  text-decoration:none;border-radius:10px;box-shadow:0 3px 0 var(--rosa-esc)
 }
-.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--amarelo-esc)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--rosa-esc)}
 
 /* ---------- RODAPÉ ---------- */
 footer{background:var(--preto);color:#9AA0A6;padding:34px 0 44px;font-size:14px;line-height:1.65}
@@ -106,6 +108,6 @@ footer strong{color:var(--branco)}
 .rod-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin:18px 0;
   padding:16px 0;border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A}
 .rod-links a{color:#C7CCD1;text-decoration:none;padding:5px 0;font-weight:600}
-.rod-links a:hover{color:var(--amarelo);text-decoration:underline}
+.rod-links a:hover{color:var(--rosa);text-decoration:underline}
 .rod-aviso,.rod-copy{font-size:13px;color:#7C8288}
 .rod-copy{margin:0}

@@ -34,8 +34,8 @@ Extraída de `servmaes.com.br` — cópia do site antigo da operação.
 
 | Papel | Cor |
 |---|---|
-| Marca / fundos de seção | `#037682` teal |
-| **Botões e destaques** | `#EFEA44` amarelo, texto escuro por cima |
+| Marca / fundos de seção | `#007C85` teal |
+| **Botões e destaques** | `#FC9FA7` amarelo, texto escuro por cima |
 | Fundo principal | `#FFFFFF` |
 | Seção de contraste | `#000000` e `#F4F4F4` |
 | Texto | `#212529` |
