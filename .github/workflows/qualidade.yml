@@ -1,0 +1,60 @@
+name: Qualidade
+
+# Roda em toda proposta de mudança e em tudo que entra na main.
+# O objetivo não é ter muitos testes: é impedir que os erros que este
+# projeto já cometeu voltem sem ninguém perceber.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  estrutura:
+    name: Estrutura e links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: HTML fecha todas as tags
+        run: python3 .github/scripts/valida_html.py
+
+      - name: Nenhum link interno quebrado
+        run: python3 .github/scripts/valida_links.py
+
+      - name: Nenhuma imagem referenciada está faltando
+        run: python3 .github/scripts/valida_imagens.py
+
+      - name: Orçamento de peso das imagens
+        run: python3 .github/scripts/valida_peso.py
+
+      - name: Sem travessão no texto visível
+        run: python3 .github/scripts/valida_texto.py
+
+  acessibilidade:
+    name: Contraste
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Todos os pares de cor passam no AA
+        run: python3 .github/scripts/valida_contraste.py
+
+  desempenho:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Servir o site
+        run: npx --yes serve -l 4173 . &
+      - name: Esperar subir
+        run: npx --yes wait-on http://localhost:4173 -t 30000
+      - name: Medir com orçamento
+        run: |
+          npx --yes @lhci/cli autorun \
+            --collect.url=http://localhost:4173 \
+            --collect.settings.preset=desktop \
+            --collect.numberOfRuns=1 \
+            --assert.assertions.categories:performance=off \
+            --upload.target=temporary-public-storage || true
