@@ -399,6 +399,11 @@
     background:linear-gradient(180deg,var(--teal-050),rgba(237,246,247,.4));
     border:1px solid rgba(0,124,133,.16);box-shadow:var(--elev-1),inset 0 1px 0 #fff}
   .caminho h3{color:var(--teal-800);margin:0 0 10px}
+  .caminho-foto{max-width:150px;margin:0 0 16px}
+  @media (min-width:620px){
+    .caminho-foto{float:right;max-width:172px;margin:0 0 14px 22px;
+      shape-outside:inset(0 round 20px)}
+  }
 
   /* ================= BARRA ================= */
   .barra{position:fixed;left:0;right:0;bottom:0;z-index:60;
@@ -472,17 +477,25 @@
      baixa o mesmo recorte vira uma faixa com um rosto gigante. A correção é
      dar altura ao hero, não espalhar o conteúdo. */
   @media (min-width:900px){
-    .hero{min-height:0;display:block;padding:34px 0 40px}
-    .hero > .wrap{width:100%}
-    .hero-fundo img{object-position:50% 16%}
-    .marca{height:30px;margin:0 auto 14px}
-    .marca-vaga{width:152px;height:30px;margin:0 auto 14px}
-    .hero h1{margin-bottom:10px}
-    .hero .risco{width:44px;margin-bottom:14px}
-    .hero-sub{font-size:17.5px;max-width:50ch;margin-bottom:20px}
-    .escopo{max-width:680px;margin-inline:auto;margin-bottom:22px;font-size:15.5px;padding:16px 20px}
+    /* A foto deixa de ser textura sob o texto e vira coluna própria.
+       Sem véu por cima dela, a mãe finalmente aparece: numa página que
+       fala com mãe, ver uma é metade do argumento. */
+    .hero{min-height:0;display:block;padding:44px 0 48px}
+    .hero > .wrap{width:100%;display:grid;grid-template-columns:1fr 372px;
+      gap:56px;align-items:center;text-align:left}
+    .hero-texto{min-width:0}
+    .hero-fundo{position:static;inset:auto;order:2;height:452px;
+      border-radius:24px;overflow:hidden;
+      box-shadow:0 26px 60px -24px rgba(0,20,22,.72),inset 0 1px 0 rgba(255,255,255,.28)}
+    .hero-fundo img{filter:none;object-position:50% 22%}
+    .hero::after{background:linear-gradient(150deg,var(--teal-700) 0%,var(--teal) 46%,var(--teal-900) 100%)}
+    .marca{height:32px;margin:0 0 16px}
+    .marca-vaga{width:162px;height:32px;margin:0 0 16px}
+    .hero .risco{width:44px;margin:0 0 16px}
+    .hero-sub{font-size:17.5px;max-width:34ch;margin-inline:0;margin-bottom:20px}
+    .escopo{max-width:none;margin-inline:0;margin-bottom:22px;font-size:15.5px;padding:17px 20px}
     .garfo p{font-size:19px;margin-bottom:13px}
-    .garfo-btns{max-width:680px;margin-inline:auto;gap:14px}
+    .garfo-btns{max-width:none;margin-inline:0;gap:14px}
     section{padding:76px 0}
     .resumo{padding:56px 0}
     .sub{margin-bottom:36px;font-size:17.5px}
@@ -647,14 +660,15 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="hero-fundo" aria-hidden="true">
+  <div class="wrap">
+    <div class="hero-fundo">
     <picture>
       <source type="image/avif" srcset="/imagens/hero-mobile.avif">
-      <img src="/imagens/hero-mobile.jpg" alt="" width="1080" height="1600"
+      <img src="/imagens/hero-mobile.jpg" alt="Mãe segurando o bebê no colo, em casa" width="1080" height="1600"
            fetchpriority="high" decoding="async" data-figura>
     </picture>
   </div>
-  <div class="wrap">
+    <div class="hero-texto">
     <div class="marca-vaga" id="marca-vaga" aria-hidden="true"></div>
     <img class="marca" src="/imagens/logo-branco.png" alt="Previmater" width="232" height="46" decoding="async"
          style="display:none"
@@ -676,6 +690,7 @@
         <button class="btn" data-garfo="bebe"><svg class="ico" aria-hidden="true"><use href="#i-mamadeira"></use></svg><span>Já tive o bebê</span></button>
         <button class="btn" data-garfo="gravida"><svg class="ico" aria-hidden="true"><use href="#i-gestante"></use></svg><span>Estou grávida</span></button>
       </div>
+    </div>
     </div>
   </div>
 </header>
@@ -1029,6 +1044,13 @@
     </div>
 
     <div class="caminho">
+        <figure class="figura caminho-foto" data-proporcao="1-1">
+          <picture>
+            <source type="image/avif" srcset="/imagens/gestante.avif">
+            <img src="/imagens/gestante.jpg" alt="Gestante em casa, apoiada na bancada da cozinha"
+                 width="1200" height="1200" loading="lazy" decoding="async" data-figura>
+          </picture>
+        </figure>
       <h3>Agora, se você está grávida e nunca contribuiu</h3>
       <p>Esse caso é diferente: ainda dá para se organizar. Quem se filia como contribuinte e cumpre o tempo mínimo antes do parto pode chegar ao benefício. Mas depende de quanto tempo falta para o bebê nascer, e cada mês que passa fecha uma porta.</p>
       <p>A equipe explica em poucos minutos o que dá para fazer no seu caso, sem custo.</p>
