@@ -117,7 +117,10 @@
 
   h1,h2,h3{font-family:var(--tit);font-weight:700;line-height:1.14;margin:0;
     letter-spacing:-.022em;text-wrap:balance}
-  h1{font-size:clamp(34px,8.4vw,46px);font-weight:700;letter-spacing:-.035em}
+  h1{font-size:clamp(33px,8vw,42px);font-weight:700;letter-spacing:-.035em}
+  /* no celular quebra em duas linhas por falta de espaço, o que é correto.
+     No desktop cabe numa linha só, e empilhar dobrava a altura percebida. */
+  .h1-a,.h1-b{display:inline-block}
   h2{font-size:clamp(25px,5.2vw,33px)}
   h3{font-size:19px;font-weight:600;letter-spacing:-.012em}
   p{margin:0 0 1.05em}
@@ -231,16 +234,17 @@
      baixa o mesmo recorte vira uma faixa com um rosto gigante. A correção é
      dar altura ao hero, não espalhar o conteúdo. */
   @media (min-width:900px){
-    .hero{min-height:min(620px,86vh);display:flex;align-items:center;padding:56px 0}
+    .hero{min-height:0;display:block;padding:34px 0 40px}
     .hero > .wrap{width:100%}
-    .hero-fundo img{object-position:50% 14%}
-    .marca{height:36px;margin:0 auto 18px}
-    .marca-vaga{width:182px;height:36px;margin:0 auto 18px}
-    .hero .risco{margin-bottom:20px}
-    .hero-sub{font-size:19px;max-width:46ch;margin-bottom:26px}
-    .escopo{max-width:640px;margin-inline:auto;margin-bottom:30px;font-size:16px;padding:20px 24px}
-    .garfo p{font-size:22px;margin-bottom:16px}
-    .garfo-btns{max-width:640px;margin-inline:auto}
+    .hero-fundo img{object-position:50% 16%}
+    .marca{height:30px;margin:0 auto 14px}
+    .marca-vaga{width:152px;height:30px;margin:0 auto 14px}
+    .hero h1{margin-bottom:10px}
+    .hero .risco{width:44px;margin-bottom:14px}
+    .hero-sub{font-size:17.5px;max-width:50ch;margin-bottom:20px}
+    .escopo{max-width:680px;margin-inline:auto;margin-bottom:22px;font-size:15.5px;padding:16px 20px}
+    .garfo p{font-size:19px;margin-bottom:13px}
+    .garfo-btns{max-width:600px;margin-inline:auto;gap:14px}
     section{padding:76px 0}
     .resumo{padding:56px 0}
     .sub{margin-bottom:36px;font-size:17.5px}
@@ -604,7 +608,7 @@
          onerror="document.getElementById('marca-vaga').remove();document.getElementById('marca-txt').style.display='block'">
     <p class="marca-txt" id="marca-txt" style="display:none">Previmater</p>
 
-    <h1>Salário<br>Maternidade</h1>
+    <h1><span class="h1-a">Salário</span> <span class="h1-b">Maternidade</span></h1>
     <div class="risco"></div>
     <p class="hero-sub">Especialistas nisso há mais de 12 anos, em Curitiba.</p>
 
