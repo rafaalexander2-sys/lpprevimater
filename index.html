@@ -37,356 +37,403 @@
 
 <style>
   :root{
+    /* ---------- marca ---------- */
     --teal:#007C85;
-    --teal-esc:#005F66;
-    --teal-claro:#E5F1F2;
+    --teal-900:#003F45;
+    --teal-800:#00545B;
+    --teal-700:#00666E;
+    --teal-500:#009AA6;
+    --teal-050:#EDF6F7;
     --rosa:#FC9FA7;
-    --rosa-esc:#D9515F;
-    --rosa-claro:#FFF0F1;
-    --rosa-luz:#FECFD3;   /* rosa clareado: o da marca reprova como texto sobre teal */
-    --rosa-texto:#B93144;
-    --branco:#FFFFFF;
-    --cinza:#F4F4F4;
-    --tinta:#212529;
-    --tinta-2:#5A6169;
-    --preto:#000000;
-    --vermelho:#B93144;
-    --borda:#DFE3E6;
-    /* movimento: uma escala só, usada em tudo, para o ritmo ser reconhecível */
-    --dur-toque:140ms;
-    --dur-ui:280ms;
-    --dur-entrada:560ms;
-    --saida:cubic-bezier(.16,.84,.34,1);
-    --padrao:cubic-bezier(.4,0,.2,1);
+    --rosa-200:#FED4D8;
+    --rosa-300:#FEC3C8;
+    --rosa-500:#F58C97;
+    --rosa-700:#C4485A;
+    --rosa-900:#8E2437;
+
+    /* ---------- neutros com viés teal, escolhidos e não herdados ---------- */
+    --tinta:#101819;
+    --tinta-70:#47565A;
+    --tinta-45:#647275;
+    --papel:#FFFFFF;
+    --papel-2:#F6F9F9;
+    --linha:rgba(16,24,25,.08);
+    --linha-forte:rgba(16,24,25,.14);
+
+    /* ---------- semânticos, separados do acento da marca ---------- */
+    --sim:#00666E;
+    --talvez:#7A6B00;
+    --nao:#A8323F;
+
+    /* ---------- elevação: larga e suave, nunca deslocamento duro ---------- */
+    --elev-1:0 1px 2px rgba(16,24,25,.04), 0 2px 10px -4px rgba(16,24,25,.08);
+    --elev-2:0 1px 3px rgba(16,24,25,.05), 0 14px 34px -14px rgba(16,24,25,.16);
+    --elev-rosa:0 1px 2px rgba(142,36,55,.16), 0 16px 34px -14px rgba(196,72,90,.58);
+    --elev-rosa-alta:0 2px 4px rgba(142,36,55,.2), 0 24px 48px -16px rgba(196,72,90,.66);
+
+    /* luz na quina superior: o detalhe que separa chapado de acabado */
+    --luz-topo:inset 0 1px 0 rgba(255,255,255,.55);
+    --luz-topo-suave:inset 0 1px 0 rgba(255,255,255,.28);
+
+    /* grão: uma textura, aplicada por cima, nunca no fundo direto */
+    --grao:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
 
     --tit:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
     --corpo:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+
+    --dur-toque:150ms;
+    --dur-ui:300ms;
+    --dur-entrada:640ms;
+    --saida:cubic-bezier(.16,.84,.34,1);
+    --padrao:cubic-bezier(.32,.08,.24,1);
   }
 
   *{box-sizing:border-box}
 
-  /* foco visível — obrigatório para teclado e leitor de tela */
-  :focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px}
-  /* anel de foco: rosa sobre teal dá 2.52 e some. Branco dá 4.97. */
+  :focus-visible{outline:2.5px solid var(--teal-500);outline-offset:3px;border-radius:6px}
   .hero :focus-visible,.escuro :focus-visible,.preta :focus-visible,
   footer :focus-visible{outline-color:#FFFFFF}
+
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{
-    margin:0;background:var(--branco);color:var(--tinta);
-    font-family:var(--corpo);font-size:17px;line-height:1.6;
-    -webkit-font-smoothing:antialiased;padding-bottom:86px;
+    margin:0;background:var(--papel);color:var(--tinta);
+    font-family:var(--corpo);font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    padding-bottom:92px;
   }
-  @media (min-width:860px){ body{padding-bottom:0} }
+  @media (min-width:900px){ body{padding-bottom:0} }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{
       animation-duration:.01ms!important;animation-iteration-count:1!important;
-      transition-duration:.01ms!important;scroll-behavior:auto!important
-    }
+      transition-duration:.01ms!important;scroll-behavior:auto!important}
     .revela{opacity:1!important;transform:none!important}
   }
 
-  .wrap{max-width:680px;margin:0 auto;padding:0 20px}
-  h1,h2,h3{font-family:var(--tit);font-weight:800;line-height:1.15;margin:0;letter-spacing:-.01em}
-  h1{font-size:clamp(34px,9vw,52px);text-transform:uppercase;letter-spacing:.01em}
-  h2{font-size:clamp(24px,6vw,34px)}
-  h3{font-size:18px;font-weight:700;line-height:1.3}
-  p{margin:0 0 1em}
+  .wrap{max-width:700px;margin:0 auto;padding:0 22px}
+  @media (min-width:1100px){ .wrap{max-width:960px} }
+
+  h1,h2,h3{font-family:var(--tit);font-weight:700;line-height:1.14;margin:0;
+    letter-spacing:-.022em;text-wrap:balance}
+  h1{font-size:clamp(35px,9.2vw,58px);font-weight:700;letter-spacing:-.032em}
+  h2{font-size:clamp(26px,5.6vw,40px)}
+  h3{font-size:19px;font-weight:600;letter-spacing:-.012em}
+  p{margin:0 0 1.05em}
 
   /* ================= BOTÃO ================= */
   .btn{
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    width:100%;padding:18px 20px;
-    background:var(--rosa);color:var(--tinta);
-    font-family:var(--tit);font-size:17px;font-weight:700;line-height:1.25;
-    text-align:center;text-decoration:none;border:0;border-radius:10px;cursor:pointer;
-    box-shadow:0 3px 0 var(--rosa-esc);
-    transition:transform var(--dur-toque) var(--padrao),box-shadow var(--dur-toque) var(--padrao),
-                background var(--dur-toque) var(--padrao),opacity var(--dur-toque) var(--padrao);
+    position:relative;display:flex;align-items:center;justify-content:center;gap:11px;
+    width:100%;padding:19px 24px;
+    background:linear-gradient(180deg,var(--rosa-300) 0%,var(--rosa) 52%,var(--rosa-500) 100%);
+    color:var(--tinta);
+    font-family:var(--tit);font-size:17px;font-weight:600;line-height:1.25;letter-spacing:-.012em;
+    text-align:center;text-decoration:none;border:1px solid #E4707E;border-radius:15px;cursor:pointer;
+    box-shadow:var(--elev-rosa),var(--luz-topo);
+    transition:transform var(--dur-toque) var(--padrao),box-shadow var(--dur-ui) var(--padrao),
+               filter var(--dur-toque) var(--padrao);
+    isolation:isolate;overflow:hidden;
   }
-  .btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--rosa-esc)}
-  /* sobre fundo teal o rosa fica em 2.59 de contraste e o botão perde o limite.
-     O anel branco devolve a borda: branco sobre teal dá 5.22. */
-  .hero .btn,.escuro .btn,.preta .btn{
-    box-shadow:0 0 0 2px rgba(255,255,255,.72),0 3px 0 var(--rosa-esc)}
-  .hero .btn:active,.escuro .btn:active,.preta .btn:active{
-    box-shadow:0 0 0 2px rgba(255,255,255,.72),0 1px 0 var(--rosa-esc)}
-  .btn svg{flex:none;width:22px;height:22px;fill:currentColor}
-  .btn-nota{margin:10px 0 0;font-size:14.5px;color:var(--tinta-2);text-align:center}
+  /* varredura de luz na quina: some no toque, é o detalhe e não o efeito */
+  .btn::after{
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.42) 50%,transparent 68%);
+    transform:translateX(-120%);transition:transform 620ms var(--saida)}
+  @media (hover:hover){
+    .btn:hover{transform:translateY(-1.5px);box-shadow:var(--elev-rosa-alta),var(--luz-topo)}
+    .btn:hover::after{transform:translateX(120%)}
+  }
+  .btn:active{transform:translateY(1px);filter:brightness(.97);
+    box-shadow:0 1px 2px rgba(142,36,55,.2),var(--luz-topo-suave)}
+  /* no escuro o próprio topo do degradê já dá 3.28 contra o teal:
+     a borda rosa ali pioraria, então some. */
+  .hero .btn,.escuro .btn,.preta .btn{border-color:transparent}
+  .btn svg{flex:none;width:22px;height:22px;fill:currentColor;opacity:.82}
+  .btn-nota{margin:13px 0 0;font-size:14.5px;color:var(--tinta-45);text-align:center;line-height:1.5}
   .btn-bloco{margin:24px 0 0}
-  .escuro .btn-nota{color:rgba(255,255,255,.94)}
+  .escuro .btn-nota,.preta .btn-nota{color:rgba(255,255,255,.7)}
+
+  /* ================= SUPERFÍCIES ================= */
+  section{padding:52px 0;position:relative}
+  @media (max-width:600px){ section{padding:44px 0} }
+
+  /* claro com degradê partindo da cor tônica, dissolvendo em transparente */
+  .cinza{
+    background:
+      linear-gradient(180deg,var(--teal-050) 0%,rgba(237,246,247,.35) 38%,transparent 72%),
+      var(--papel);
+  }
+
+  /* escuro: degradê + grão + luz radial no topo */
+  .escuro,.preta{color:#fff;isolation:isolate}
+  .escuro{background:linear-gradient(168deg,var(--teal-700) 0%,var(--teal) 42%,var(--teal-800) 100%)}
+  .preta{background:linear-gradient(168deg,#0D1516 0%,#050A0B 55%,#0A1213 100%)}
+  .escuro::before,.preta::before,.hero::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:var(--grao);background-size:160px 160px;
+    opacity:.055;mix-blend-mode:overlay}
+  .escuro::after,.preta::after{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(120% 62% at 50% -12%,rgba(255,255,255,.16),transparent 62%)}
+  .escuro > .wrap,.preta > .wrap{position:relative;z-index:1}
+  .escuro h2,.preta h2{color:#fff}
+
+  .titulo{text-align:center;margin:0 0 10px}
+  .sub{text-align:center;color:var(--tinta-70);margin:0 0 26px;font-size:17px;
+    max-width:52ch;margin-inline:auto;text-wrap:balance}
+  .escuro .sub,.preta .sub{color:rgba(255,255,255,.9)}
 
   /* ================= HERO ================= */
-  .hero{background:var(--teal);color:var(--branco);padding:22px 0 26px;text-align:center}
-  .marca{height:46px;width:auto;margin:0 auto 14px;display:block}
-  .marca-txt{font-family:var(--tit);font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 12px}
-  .hero h1{margin:0 0 14px}
-  .hero .risco{width:74px;height:4px;background:var(--rosa-luz);margin:0 auto 15px;border-radius:2px}
-  .hero-sub{font-size:18px;color:rgba(255,255,255,.94);margin:0 0 16px}
+  .hero{position:relative;isolation:isolate;color:#fff;text-align:center;
+    padding:24px 0 34px;overflow:hidden}
+  .hero-fundo{position:absolute;inset:0;z-index:-3;overflow:hidden}
+  .hero-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+    filter:brightness(.55) saturate(.92)}
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(96% 52% at 50% 0%,rgba(0,154,166,.34),transparent 64%),
+      linear-gradient(180deg,rgba(0,102,110,.86) 0%,rgba(0,124,133,.80) 44%,rgba(0,63,69,.93) 100%)}
+  .hero::before{z-index:-1;opacity:.07}
+  .hero:not(:has(.hero-fundo img[src]))::after{background:var(--teal)}
+  .hero > .wrap{position:relative;z-index:1}
+
+  .marca{height:42px;width:auto;margin:0 auto 15px;display:block}
+  .marca-vaga{width:232px;height:46px;margin:0 auto 18px;border-radius:10px;
+    background:linear-gradient(100deg,rgba(255,255,255,.08) 30%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.08) 70%);
+    background-size:220% 100%;animation:brilho 1.6s ease-in-out infinite}
+  @keyframes brilho{from{background-position:180% 0}to{background-position:-40% 0}}
+  .marca-txt{font-family:var(--tit);font-size:27px;font-weight:700;letter-spacing:-.03em;margin:0 0 18px}
+
+  .hero h1{margin:0 0 14px;text-shadow:0 1px 30px rgba(0,40,44,.35)}
+  .hero .risco{width:52px;height:3px;margin:0 auto 16px;border-radius:2px;
+    background:linear-gradient(90deg,transparent,var(--rosa-200),transparent)}
+  .hero-sub{font-size:18px;color:rgba(255,255,255,.92);margin:0 0 20px;
+    max-width:34ch;margin-inline:auto;text-wrap:balance}
 
   .escopo{
-    background:rgba(0,0,0,.17);border-radius:10px;padding:14px 16px;
-    text-align:left;font-size:15.5px;line-height:1.5;margin:0 0 20px
-  }
+    position:relative;text-align:left;font-size:15.5px;line-height:1.58;margin:0 0 24px;
+    padding:17px 19px;border-radius:16px;
+    background:linear-gradient(180deg,rgba(0,40,44,.34),rgba(0,40,44,.2));
+    box-shadow:var(--luz-topo-suave),0 12px 34px -18px rgba(0,0,0,.6);
+    backdrop-filter:blur(2px)}
   .escopo p{margin:0}
-  .escopo b{color:var(--rosa-luz)}
+  .escopo b{color:var(--rosa-200);font-weight:600}
 
-  .garfo{margin:0}
-  .garfo p{font-family:var(--tit);font-size:20px;font-weight:700;margin:0 0 12px}
-  .garfo-btns{display:grid;gap:11px}
-  .garfo-btns .ico{width:22px;height:22px;color:var(--teal-esc)}
-  @media (min-width:520px){ .garfo-btns{grid-template-columns:1fr 1fr} }
+  .garfo p{font-family:var(--tit);font-size:20px;font-weight:600;letter-spacing:-.02em;margin:0 0 13px}
+  .garfo-btns{display:grid;gap:12px}
+  @media (min-width:560px){ .garfo-btns{grid-template-columns:1fr 1fr} }
+  .garfo-btns .ico{width:21px;height:21px;opacity:.78}
+
+  /* ================= RESUMO ================= */
+  .resumo{background:linear-gradient(180deg,var(--teal-050),transparent);padding:38px 0}
+  .resumo-tit{font-size:11.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+    color:var(--teal-700);margin:0 0 20px;font-family:var(--tit)}
+  .resumo-lista{margin:0;padding:0}
+  .resumo-lista > div{padding:16px 0;border-top:1px solid var(--linha)}
+  .resumo-lista > div:first-child{border-top:0;padding-top:0}
+  .resumo-lista dt{font-family:var(--tit);font-size:14.5px;font-weight:600;color:var(--teal-700);
+    margin:0 0 5px;display:flex;align-items:center;gap:8px;letter-spacing:-.005em}
+  .resumo-lista dt .ico{width:17px;height:17px;opacity:.9}
+  .resumo-lista dd{margin:0;font-size:16.5px;line-height:1.6;color:var(--tinta-70)}
+  .resumo-fonte{margin:20px 0 0;font-size:13.5px;line-height:1.55;color:var(--tinta-45)}
+  @media (min-width:780px){
+    .resumo-lista > div{display:grid;grid-template-columns:190px 1fr;gap:22px;align-items:baseline}
+    .resumo-lista dt{margin:0}
+  }
 
   /* ================= ÍCONES ================= */
   .ico{width:1.35em;height:1.35em;flex:none;vertical-align:-.28em}
   .ico-selo{
-    width:44px;height:44px;flex:none;border-radius:11px;
+    width:46px;height:46px;flex:none;border-radius:14px;
     display:flex;align-items:center;justify-content:center;
-    background:var(--teal-claro);color:var(--teal)
-  }
-  .ico-selo .ico{width:24px;height:24px}
-  .escuro .ico-selo,.preta .ico-selo{background:rgba(254,207,211,.17);color:var(--rosa-luz)}
+    background:linear-gradient(180deg,#F4FAFA,var(--teal-050));
+    color:var(--teal-700);box-shadow:var(--elev-1),inset 0 1px 0 #fff}
+  .ico-selo .ico{width:23px;height:23px}
+  .escuro .ico-selo,.preta .ico-selo{
+    background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.06));
+    color:var(--rosa-200);box-shadow:var(--luz-topo-suave)}
+
+  /* ================= CARTÕES ================= */
+  .cartoes{display:grid;gap:16px}
+  @media (min-width:940px){ .cartoes{grid-template-columns:repeat(3,1fr);align-items:start} }
+
+  .cartao{
+    background:var(--papel);border:1px solid var(--linha);border-radius:20px;
+    padding:21px 21px 9px;box-shadow:var(--elev-1);
+    transition:box-shadow var(--dur-ui) var(--padrao),transform var(--dur-ui) var(--padrao)}
+  @media (hover:hover){ .cartao:hover{box-shadow:var(--elev-2);transform:translateY(-3px)} }
+  .cartao h3{font-family:var(--tit);font-size:12.5px;font-weight:700;letter-spacing:.11em;
+    text-transform:uppercase;margin:0 0 18px;display:flex;align-items:center;gap:9px}
+  .cartao h3 .ico{width:17px;height:17px;padding:4px;border-radius:8px;box-sizing:content-box}
+  .cartao.sim h3{color:var(--sim)}
+  .cartao.sim h3 .ico{background:rgba(0,102,110,.09)}
+  .cartao.talvez h3{color:var(--talvez)}
+  .cartao.talvez h3 .ico{background:rgba(122,107,0,.09)}
+  .cartao.nao h3{color:var(--nao)}
+  .cartao.nao h3 .ico{background:rgba(168,50,63,.08)}
+
+  .lista{list-style:none;margin:0;padding:0}
+  .lista li{position:relative;padding:0 0 12px 30px;font-size:16.5px;line-height:1.5;color:var(--tinta-70)}
+  .lista li::before{position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700}
+  .sim .lista li::before{content:"✓";background:rgba(0,102,110,.1);color:var(--sim)}
+  .talvez .lista li::before{content:"?";background:rgba(122,107,0,.1);color:var(--talvez)}
+  .nao .lista li::before{content:"×";background:rgba(168,50,63,.09);color:var(--nao);font-size:13px}
+
+  .desvio{margin:18px 0 4px;padding:16px 18px;border-radius:14px;font-size:15.5px;line-height:1.55;
+    background:linear-gradient(180deg,var(--teal-050),transparent);color:var(--tinta-70)}
+  .desvio p{margin:0}
+  .desvio strong{display:block;margin-bottom:5px;color:var(--tinta)}
 
   /* ================= IMAGENS ================= */
-  /* aspect-ratio reserva o espaço antes de o arquivo chegar: zero deslocamento */
-  .figura{margin:0 0 4px;border-radius:12px;overflow:hidden;background:var(--cinza)}
+  .figura{margin:0 0 6px;border-radius:20px;overflow:hidden;background:var(--papel-2);
+    box-shadow:var(--elev-2)}
   .figura img{display:block;width:100%;height:100%;object-fit:cover}
   .figura[data-proporcao="7-5"]{aspect-ratio:7/5}
   .figura[data-proporcao="4-3"]{aspect-ratio:4/3}
   .figura[data-proporcao="16-9"]{aspect-ratio:16/9}
   .figura[data-proporcao="1-1"]{aspect-ratio:1/1}
   .figura.ausente{display:none}
-  .escuro .figura,.preta .figura{background:rgba(255,255,255,.07)}
-  .figura-legenda{margin:9px 0 0;font-size:13.5px;color:var(--tinta-2);line-height:1.45}
-  .escuro .figura-legenda{color:rgba(255,255,255,.8)}
-
-  /* fundo fotográfico do hero, sob o véu teal */
-  .hero{position:relative;isolation:isolate}
-  .hero-fundo{position:absolute;inset:0;z-index:-2;overflow:hidden}
-  .hero-fundo img{
-    width:100%;height:100%;object-fit:cover;object-position:50% 20%;
-    /* a janela da foto tem luminância 0,91 — texto branco em cima dela reprova
-       mesmo com véu de 94%. brightness(.55) derruba o pico para ~0,27 linear. */
-    filter:brightness(.55) saturate(.92)
-  }
-  .hero::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(180deg,rgba(0,124,133,.84) 0%,rgba(0,124,133,.80) 42%,rgba(0,95,102,.90) 100%)
-  }
-  /* sem foto, o teal chapado assume e nada quebra */
-  .hero:not(:has(.hero-fundo img[src]))::after{background:var(--teal)}
-
-  /* textura sutil de pontos, 1 KB, nítida em qualquer tela */
-  .cinza{background-color:var(--cinza);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='1.6' cy='1.6' r='1.6' fill='%23007C85' opacity='.055'/%3E%3C/svg%3E")}
-
-  /* avatar por iniciais: funciona sem foto nenhuma */
-  .depo-quem{display:flex;align-items:center;gap:11px;margin-top:14px}
-  .depo-inicial{
-    width:42px;height:42px;flex:none;border-radius:50%;
-    background:var(--teal);color:var(--branco);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--tit);font-size:16px;font-weight:800
-  }
-  .depo-quem cite{display:block}
-  .depo-onde{display:block;font-size:13px;font-weight:400;color:var(--tinta-2);font-family:var(--corpo)}
-
-  /* ================= MOVIMENTO ================= */
-  /* Entrada por rolagem. 14px lê como assentar; 40px lê como enfeite. */
-  .js .revela{opacity:0;transform:translateY(14px);
-    transition:opacity var(--dur-entrada) var(--saida),transform var(--dur-entrada) var(--saida)}
-  .js .revela.visivel{opacity:1;transform:none}
-  .revela[data-atraso="1"]{transition-delay:70ms}
-  .revela[data-atraso="2"]{transition-delay:140ms}
-  .revela[data-atraso="3"]{transition-delay:210ms}
-
-  /* Troca de painel do garfo: entra, em vez de piscar. */
-  [data-modo]{animation:entra var(--dur-ui) var(--saida) both}
-  @keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-  /* Sanfona: progressivo. Navegador sem suporte abre na hora, sem quebrar. */
-  @supports (interpolate-size:allow-keywords){
-    :root{interpolate-size:allow-keywords}
-    details::details-content{
-      block-size:0;overflow:hidden;opacity:0;
-      transition:block-size var(--dur-ui) var(--saida),
-                 content-visibility var(--dur-ui) allow-discrete,
-                 opacity var(--dur-ui) var(--padrao)
-    }
-    details[open]::details-content{block-size:auto;opacity:1}
-  }
-
-  /* Esqueleto do logo enquanto o arquivo não chega. */
-  .marca-vaga{
-    width:232px;height:46px;margin:0 auto 14px;border-radius:8px;
-    background:linear-gradient(100deg,rgba(255,255,255,.10) 30%,rgba(255,255,255,.22) 50%,rgba(255,255,255,.10) 70%);
-    background-size:220% 100%;animation:brilho 1.5s ease-in-out infinite
-  }
-  @keyframes brilho{from{background-position:180% 0}to{background-position:-40% 0}}
-
-  /* Progresso: o WhatsApp demora a assumir e o botão parece morto sem isto. */
-  .btn[data-ocupado="true"]{pointer-events:none;opacity:.9}
-  .giro{
-    width:20px;height:20px;flex:none;border-radius:50%;
-    border:2.5px solid rgba(0,0,0,.22);border-top-color:var(--tinta);
-    animation:girar .7s linear infinite
-  }
-  @keyframes girar{to{transform:rotate(360deg)}}
-
-  /* ================= RESUMO (GEO) ================= */
-  .resumo{background:var(--teal-claro);padding:30px 0}
-  .resumo-tit{font-size:13px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
-    color:var(--teal);margin:0 0 16px;font-family:var(--tit)}
-  .resumo-lista{margin:0;padding:0}
-  .resumo-lista > div{padding:11px 0;border-top:1px solid rgba(0,124,133,.22)}
-  .resumo-lista > div:first-child{border-top:0;padding-top:0}
-  .resumo-lista dt{font-family:var(--tit);font-size:15px;font-weight:800;color:var(--teal-esc);margin:0 0 3px;
-    display:flex;align-items:center;gap:7px}
-  .resumo-lista dt .ico{width:18px;height:18px}
-  .resumo-lista dd{margin:0;font-size:16px;line-height:1.5;color:var(--tinta)}
-  .resumo-fonte{margin:14px 0 0;font-size:13.5px;line-height:1.5;color:var(--tinta-2)}
-  @media (min-width:760px){
-    .resumo-lista > div{display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:baseline}
-    .resumo-lista dt{margin:0}
-  }
-
-  /* ================= SEÇÕES ================= */
-  section{padding:44px 0}
-  .cinza{background:var(--cinza)}
-  .escuro{background:var(--teal);color:var(--branco)}
-  .escuro h2{color:var(--branco)}
-  .preta{background:var(--preto);color:var(--branco)}
-  .preta h2{color:var(--branco)}
-  .titulo{text-align:center;margin:0 0 8px}
-  .sub{text-align:center;color:var(--tinta-2);margin:0 0 26px;font-size:16.5px}
-  .escuro .sub,.preta .sub{color:rgba(255,255,255,.94)}
-
-  /* ================= GARFO / ABAS ================= */
-  .abas{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 24px}
-  .aba{
-    padding:13px 10px;border:2px solid var(--borda);background:var(--branco);
-    border-radius:9px;font-family:var(--tit);font-size:15.5px;font-weight:700;
-    color:var(--tinta-2);cursor:pointer;
-    transition:background var(--dur-ui) var(--padrao),border-color var(--dur-ui) var(--padrao),color var(--dur-ui) var(--padrao)
-  }
-  .aba[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:var(--branco)}
-
-  [data-modo]{display:none}
-  body[data-caso="bebe"]   [data-modo="bebe"]{display:block}
-  body[data-caso="gravida"] [data-modo="gravida"]{display:block}
-
-  /* ================= CARTÕES ================= */
-  .cartoes{display:grid;gap:14px}
-  @media (min-width:900px){ .cartoes{grid-template-columns:repeat(3,1fr);align-items:start} }
-
-  .cartao{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:18px 18px 6px;
-    transition:box-shadow var(--dur-ui) var(--padrao),transform var(--dur-ui) var(--padrao)}
-  @media (hover:hover){ .cartao:hover{box-shadow:0 6px 22px rgba(0,0,0,.07);transform:translateY(-2px)} }
-  .cartao.sim{border-top:5px solid var(--teal)}
-  .cartao.talvez{border-top:5px solid var(--rosa)}
-  .cartao.nao{border-top:5px solid var(--vermelho)}
-  .cartao h3{font-family:var(--tit);font-size:13px;font-weight:800;letter-spacing:.09em;
-    text-transform:uppercase;margin:0 0 13px;display:flex;align-items:center;gap:7px}
-  .cartao h3 .ico{width:19px;height:19px}
-  .cartao.sim h3{color:var(--teal)}
-  .cartao.talvez h3{color:#7A6B00}
-  .cartao.nao h3{color:var(--vermelho)}
-
-  .lista{list-style:none;margin:0;padding:0}
-  .lista li{position:relative;padding:0 0 12px 29px;font-size:16px;line-height:1.45}
-  .lista li::before{
-    position:absolute;left:0;top:2px;width:19px;height:19px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800
-  }
-  .sim .lista li::before{content:"✓";background:var(--teal-claro);color:var(--teal)}
-  .talvez .lista li::before{content:"?";background:#FBF8CF;color:#7A6B00}
-  .nao .lista li::before{content:"×";background:#FBE9E7;color:var(--vermelho);font-size:14px}
+  .escuro .figura,.preta .figura{background:rgba(255,255,255,.05);box-shadow:0 20px 44px -20px rgba(0,0,0,.6)}
+  .figura-legenda{margin:12px 0 0;font-size:13.5px;color:var(--tinta-45);line-height:1.55;text-align:center}
+  .escuro .figura-legenda{color:rgba(255,255,255,.68)}
 
   /* ================= NEGATIVA ================= */
-  .negativa{background:rgba(0,0,0,.2);border-radius:12px;padding:20px;margin:0 0 6px}
+  .negativa{
+    border-radius:20px;padding:22px;margin:0 0 6px;
+    background:linear-gradient(180deg,rgba(0,40,44,.3),rgba(0,40,44,.14));
+    box-shadow:var(--luz-topo-suave),0 16px 40px -22px rgba(0,0,0,.7)}
   .negativa p:last-child{margin:0}
-  .negativa b{color:var(--rosa-luz)}
+  .negativa b{color:var(--rosa-200);font-weight:600}
 
   /* ================= PASSOS ================= */
   .passos{list-style:none;margin:0;padding:0}
-  .passos li{position:relative;padding:0 0 26px 62px}
-  .passo-selo{
-    position:absolute;left:0;top:-2px;width:44px;height:44px;border-radius:12px;
+  .passos li{position:relative;padding:0 0 24px 66px}
+  .passo-selo{position:absolute;left:0;top:-2px;width:48px;height:48px;border-radius:16px;
     display:flex;align-items:center;justify-content:center;
-    background:var(--rosa);color:var(--teal-esc)
-  }
+    background:linear-gradient(180deg,var(--rosa-300),var(--rosa));
+    color:#7A1D2E;box-shadow:var(--elev-rosa),var(--luz-topo)}
   .passo-selo .ico{width:23px;height:23px}
-  .passo-num{
-    display:block;font-family:var(--tit);font-size:11.5px;font-weight:800;
-    letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin:0 0 2px
-  }
-  .passos li:not(:last-child)::after{content:"";position:absolute;left:21px;top:50px;bottom:4px;width:2px;background:var(--borda)}
-  .passos p{margin:3px 0 0;color:var(--tinta-2);font-size:16px}
+  .passo-num{display:block;font-family:var(--tit);font-size:11px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--teal-700);margin:0 0 3px}
+  .passos li:not(:last-child)::after{content:"";position:absolute;left:23.5px;top:54px;bottom:2px;width:1px;
+    background:linear-gradient(180deg,var(--linha-forte),transparent)}
+  .passos p{margin:4px 0 0;color:var(--tinta-70);font-size:16.5px}
 
   /* ================= NÚMEROS ================= */
   .numeros{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 26px}
-  @media (min-width:700px){ .numeros{grid-template-columns:repeat(4,1fr)} }
-  .num{background:rgba(255,255,255,.1);border-radius:11px;padding:17px 10px;text-align:center}
-  .num b{display:block;font-family:var(--tit);font-size:26px;font-weight:800;color:var(--rosa);line-height:1.1}
-  .num-ico{display:block;width:22px;height:22px;margin:0 auto 7px;color:var(--rosa)}
-  .num span{display:block;margin-top:6px;font-size:14px;line-height:1.35;color:rgba(255,255,255,.88)}
+  @media (min-width:760px){ .numeros{grid-template-columns:repeat(4,1fr)} }
+  .num{border-radius:18px;padding:19px 12px;text-align:center;
+    background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+    box-shadow:var(--luz-topo-suave)}
+  .num b{display:block;font-family:var(--tit);font-size:27px;font-weight:700;letter-spacing:-.03em;
+    color:#FFF5F6;line-height:1.1}
+  .num span{display:block;margin-top:7px;font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.94)}
+  .num-ico{display:block;width:21px;height:21px;margin:0 auto 9px;color:var(--rosa-200);opacity:.9}
 
-  /* ================= DEPOIMENTOS ================= */
-  .depos{display:grid;gap:14px}
-  @media (min-width:820px){ .depos{grid-template-columns:repeat(3,1fr)} }
-  .depo{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:19px}
-  .depo{position:relative}
-  .depo .ico-selo{margin:0 0 13px}
-  .depo h3{font-family:var(--tit);font-size:17px;font-weight:700;margin:0 0 8px;color:var(--teal-esc)}
-  .depo p{margin:0;font-size:16px;line-height:1.5;color:var(--tinta-2)}
-  .nota-prova{margin:22px 0 0;font-size:14.5px;line-height:1.55;color:var(--tinta-2);
-    padding:14px 16px;background:var(--branco);border-left:4px solid var(--teal);border-radius:0 9px 9px 0}
-  .depo .estrelas{color:var(--rosa-esc);letter-spacing:2px;font-size:14px;margin:0 0 9px}
-  .depo cite{font-style:normal;font-size:14px;font-weight:700;color:var(--teal);font-family:var(--tit)}
+  /* ================= SITUAÇÕES ================= */
+  .depos{display:grid;gap:16px}
+  @media (min-width:880px){ .depos{grid-template-columns:repeat(3,1fr)} }
+  .depo{background:var(--papel);border:1px solid var(--linha);border-radius:20px;padding:21px;
+    box-shadow:var(--elev-1)}
+  .depo .ico-selo{margin:0 0 16px}
+  .depo h3{font-family:var(--tit);font-size:17.5px;font-weight:600;margin:0 0 9px;color:var(--teal-800)}
+  .depo p{margin:0;font-size:16px;line-height:1.6;color:var(--tinta-70)}
+  .nota-prova{margin:26px 0 0;font-size:14.5px;line-height:1.6;color:var(--tinta-70);
+    padding:18px 20px;border-radius:16px;
+    background:linear-gradient(180deg,var(--teal-050),transparent)}
+
+  /* ================= ABAS ================= */
+  .abas{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 30px;
+    padding:5px;border-radius:16px;background:var(--papel-2);border:1px solid var(--linha)}
+  .aba{padding:13px 10px;border:0;background:transparent;border-radius:12px;
+    font-family:var(--tit);font-size:15.5px;font-weight:600;letter-spacing:-.01em;
+    color:var(--tinta-45);cursor:pointer;
+    transition:background var(--dur-ui) var(--padrao),color var(--dur-ui) var(--padrao),
+               box-shadow var(--dur-ui) var(--padrao)}
+  .aba[aria-selected="true"]{background:var(--papel);color:var(--teal-800);
+    box-shadow:var(--elev-1),inset 0 1px 0 #fff}
+
+  /* ================= DÚVIDAS ================= */
+  details{border-bottom:1px solid var(--linha)}
+  details:first-of-type{border-top:1px solid var(--linha)}
+  summary{list-style:none;cursor:pointer;padding:17px 40px 17px 0;position:relative;
+    font-family:var(--tit);font-weight:500;font-size:17px;line-height:1.45;letter-spacing:-.014em;
+    transition:color var(--dur-toque) var(--padrao)}
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--teal-700)}
+  summary::after{content:"";position:absolute;right:10px;top:27px;width:8px;height:8px;
+    border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);
+    transform:rotate(45deg);transition:transform var(--dur-ui) var(--saida);opacity:.7}
+  details[open] summary::after{transform:rotate(-135deg);top:30px}
+  details p{margin:0 0 20px;color:var(--tinta-70);font-size:16.5px}
 
   /* ================= SAÍDA ================= */
-  .saida{background:var(--cinza);border-left:6px solid var(--vermelho);border-radius:0 12px 12px 0;padding:20px}
-  .saida h3{margin:0 0 10px;font-family:var(--tit);font-size:19px}
+  .saida{border-radius:20px;padding:22px;background:var(--papel);border:1px solid var(--linha);
+    box-shadow:var(--elev-1)}
+  .saida h3{margin:0 0 12px;font-family:var(--tit);font-size:19px;color:var(--nao)}
+  .saida p{color:var(--tinta-70)}
   .saida p:last-of-type{margin-bottom:0}
-  .caminho{margin:20px 0 0;padding:18px;background:var(--branco);border:2px dashed var(--teal);border-radius:11px}
-  .caminho h3{color:var(--teal);margin:0 0 8px}
-
-  /* ================= FAQ ================= */
-  details{border-bottom:1px solid var(--borda)}
-  details:first-of-type{border-top:1px solid var(--borda)}
-  summary{list-style:none;cursor:pointer;padding:17px 34px 17px 0;position:relative;
-    font-weight:700;font-size:16.5px;line-height:1.4;font-family:var(--tit)}
-  summary::-webkit-details-marker{display:none}
-  summary{transition:color var(--dur-toque) var(--padrao)}
-  summary:hover{color:var(--teal)}
-  summary::after{content:"";position:absolute;right:8px;top:24px;width:9px;height:9px;
-    border-right:2.5px solid var(--teal);border-bottom:2.5px solid var(--teal);
-    transform:rotate(45deg);transition:transform var(--dur-ui) var(--saida)}
-  details[open] summary::after{transform:rotate(-135deg);top:27px}
-  details p{margin:0 0 17px;color:var(--tinta-2);font-size:16px}
+  .caminho{margin:20px 0 0;padding:22px;border-radius:20px;
+    background:linear-gradient(180deg,var(--teal-050),rgba(237,246,247,.4));
+    border:1px solid rgba(0,124,133,.16);box-shadow:var(--elev-1),inset 0 1px 0 #fff}
+  .caminho h3{color:var(--teal-800);margin:0 0 10px}
 
   /* ================= BARRA ================= */
-  .barra{
-    position:fixed;left:0;right:0;bottom:0;z-index:60;
-    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-    background:rgba(255,255,255,.96);border-top:1px solid var(--borda);
-    box-shadow:0 -3px 16px rgba(0,0,0,.09);
-    transform:translateY(120%);transition:transform var(--dur-ui) var(--saida)
-  }
+  .barra{position:fixed;left:0;right:0;bottom:0;z-index:60;
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(18px);
+    border-top:1px solid var(--linha);
+    transform:translateY(125%);transition:transform var(--dur-ui) var(--saida)}
   .barra.on{transform:translateY(0)}
-  @media (min-width:860px){ .barra{display:none} }
+  .barra .btn{padding:17px 22px}
+  @media (min-width:900px){ .barra{display:none} }
 
   /* ================= RODAPÉ ================= */
-  footer{background:var(--preto);color:#9AA0A6;padding:34px 0 44px;font-size:14px;line-height:1.65}
-  footer p{margin:0 0 13px}
-  footer strong{color:var(--branco)}
-  .rod-marca{font-family:var(--tit);font-size:17px;margin:0 0 8px}
-  .rod-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin:18px 0;
-    padding:16px 0;border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A}
-  .rod-links a{color:#C7CCD1;text-decoration:none;padding:5px 0;font-weight:600}
-  .rod-links a:hover{color:var(--rosa);text-decoration:underline}
-  .rod-aviso{font-size:13px;color:#7C8288}
-  .rod-copy{margin:0;font-size:13px;color:#7C8288}
+  footer{position:relative;isolation:isolate;color:rgba(255,255,255,.62);
+    padding:52px 0 56px;font-size:14px;line-height:1.7;
+    background:linear-gradient(168deg,#0D1516 0%,#050A0B 60%,#0A1213 100%)}
+  footer::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:var(--grao);background-size:160px 160px;opacity:.05;mix-blend-mode:overlay}
+  footer > .wrap{position:relative;z-index:1}
+  footer p{margin:0 0 14px}
+  footer strong{color:#fff}
+  .rod-logo{height:37px;width:auto;display:block;margin:0 0 14px;opacity:.95}
+  .rod-marca{font-family:var(--tit);font-size:15px;font-weight:500;letter-spacing:.02em;
+    margin:0 0 14px;color:rgba(255,255,255,.7)}
+  .rod-links{display:flex;flex-wrap:wrap;gap:8px 26px;margin:24px 0;padding:20px 0;
+    border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09)}
+  .rod-links a{color:rgba(255,255,255,.82);text-decoration:none;padding:5px 0;font-weight:600;
+    transition:color var(--dur-toque) var(--padrao)}
+  .rod-links a:hover{color:var(--rosa-200)}
+  .rod-aviso,.rod-copy{font-size:13px;color:rgba(255,255,255,.54)}
+  .rod-copy{margin:0}
+
+  /* ================= MOVIMENTO ================= */
+  .js .revela{opacity:0;transform:translateY(16px);
+    transition:opacity var(--dur-entrada) var(--saida),transform var(--dur-entrada) var(--saida)}
+  .js .revela.visivel{opacity:1;transform:none}
+  .revela[data-atraso="1"]{transition-delay:80ms}
+  .revela[data-atraso="2"]{transition-delay:160ms}
+  .revela[data-atraso="3"]{transition-delay:240ms}
+
+  [data-modo]{animation:entra var(--dur-ui) var(--saida) both}
+  @keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  @supports (interpolate-size:allow-keywords){
+    :root{interpolate-size:allow-keywords}
+    details::details-content{block-size:0;overflow:hidden;opacity:0;
+      transition:block-size var(--dur-ui) var(--saida),
+                 content-visibility var(--dur-ui) allow-discrete,
+                 opacity var(--dur-ui) var(--padrao)}
+    details[open]::details-content{block-size:auto;opacity:1}
+  }
+
+  .btn[data-ocupado="true"]{pointer-events:none;opacity:.92}
+  .giro{width:20px;height:20px;flex:none;border-radius:50%;
+    border:2.5px solid rgba(16,24,25,.2);border-top-color:var(--tinta);
+    animation:girar .7s linear infinite}
+  @keyframes girar{to{transform:rotate(360deg)}}
 </style>
 
 <script type="application/ld+json">
@@ -410,10 +457,8 @@
    "vatID":"14.578.648/0001-54",
    "address":{
     "@type":"PostalAddress",
-    "streetAddress":"Rua Exemplo, 000",
     "addressLocality":"Curitiba",
     "addressRegion":"PR",
-    "postalCode":"00000-000",
     "addressCountry":"BR"
    },
    "geo":{"@type":"GeoCoordinates","latitude":-25.4284,"longitude":-49.2733},
@@ -532,7 +577,7 @@
     <p class="hero-sub">Especialistas nisso há mais de 12 anos, em Curitiba.</p>
 
     <div class="escopo">
-      <p>Este é um serviço para mães que <b>já contribuíram para a Previdência</b> em algum momento — carteira assinada, MEI ou autônoma — e para <b>grávidas que querem começar agora</b>. Fora esses dois casos, a gente não consegue ajudar.</p>
+      <p>Atendemos mães que <b>já contribuíram para a Previdência</b> em algum momento, seja com carteira assinada, MEI ou autônoma, e <b>grávidas que querem começar agora</b>. Fora esses dois casos, a gente não consegue ajudar.</p>
     </div>
 
     <div class="garfo">
@@ -551,7 +596,7 @@
     <h2 id="tit-resumo" class="resumo-tit">Em resumo</h2>
     <dl class="resumo-lista">
       <div><dt><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> O que é</dt><dd>Benefício da Previdência pago à mãe por ocasião do nascimento, da adoção ou da perda gestacional a partir do sexto mês.</dd></div>
-      <div><dt><svg class="ico" aria-hidden="true"><use href="#i-conversa"></use></svg> Quem costuma receber</dt><dd>Mães que contribuíram para a Previdência em algum momento antes do parto — com carteira assinada, como MEI ou como autônoma.</dd></div>
+      <div><dt><svg class="ico" aria-hidden="true"><use href="#i-conversa"></use></svg> Quem costuma receber</dt><dd>Mães que contribuíram para a Previdência em algum momento antes do parto, seja com carteira assinada, como MEI ou como autônoma.</dd></div>
       <div><dt><svg class="ico" aria-hidden="true"><use href="#i-relogio"></use></svg> Prazo</dt><dd>Até 5 anos contados do nascimento. Depois disso o pedido não é mais aceito.</dd></div>
       <div><dt><svg class="ico" aria-hidden="true"><use href="#i-dinheiro"></use></svg> Valor</dt><dd>Quatro parcelas, que costumam somar de R$ 6.484 a mais de R$ 14 mil, conforme o salário de contribuição.</dd></div>
     </dl>
@@ -580,7 +625,7 @@
           <ul class="lista">
             <li>Trabalhou de carteira assinada antes de o bebê nascer, mesmo que por pouco tempo</li>
             <li>Era MEI ou autônoma e pagava a contribuição</li>
-            <li>Saiu do emprego e o bebê nasceu depois — a cobertura costuma continuar por um tempo</li>
+            <li>Saiu do emprego e o bebê nasceu depois. A cobertura costuma continuar por um tempo</li>
             <li>Pediu a conta ou foi demitida estando grávida</li>
             <li>O bebê nasceu e a empresa não pagou o benefício</li>
             <li>Perdeu o bebê depois do sexto mês de gestação</li>
@@ -605,7 +650,7 @@
             <li>O bebê nasceu há mais de 5 anos</li>
           </ul>
           <p style="font-size:15.5px;color:var(--tinta-2);margin:4px 0 8px">
-            Sendo um desses dois, infelizmente não temos como ajudar — e é melhor você saber agora.
+            Sendo um desses dois, infelizmente não temos como ajudar. É melhor você saber agora.
             <a href="#saida" style="color:var(--vermelho);font-weight:700;display:inline-block;padding:11px 0">Entenda o porquê ↓</a>
           </p>
         </div>
@@ -614,7 +659,7 @@
       <div class="btn-bloco">
         <a class="btn" href="#" data-whats data-codigo="LP" data-origem="casos-bebe">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-          <span class="rotulo">Já contribuí — quero conferir meu caso</span>
+          <span class="rotulo">Já contribuí, quero conferir meu caso</span>
         </a>
         <p class="btn-nota">Vai pedir duas datas: quando você saiu do serviço e quando o bebê nasceu.</p>
       </div>
@@ -664,7 +709,7 @@
       <div class="btn-bloco">
         <a class="btn" href="#" data-whats data-codigo="LPG" data-origem="casos-gravida">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-          <span class="rotulo">Estou grávida — quero falar com a equipe</span>
+          <span class="rotulo">Estou grávida e quero falar com a equipe</span>
         </a>
         <p class="btn-nota">Vai pedir de quantos meses você está.</p>
       </div>
@@ -677,7 +722,7 @@
   <div class="wrap">
     <div class="ico-selo" style="margin:0 auto 14px"><svg class="ico" aria-hidden="true"><use href="#i-carta"></use></svg></div>
     <h2 class="titulo">Recebeu uma carta dizendo que foi negado?</h2>
-    <p class="sub">Esse é o caso que mais chega aqui — e o que mais surpreende.</p>
+    <p class="sub">Esse é o caso que mais chega aqui, e o que mais surpreende.</p>
 
     <figure class="figura" data-proporcao="7-5">
       <picture>
@@ -689,7 +734,7 @@
 
     <div class="negativa">
       <p><b>Negado nem sempre quer dizer caso encerrado.</b> Na maior parte das vezes o que faltou foi documento, ou o pedido foi montado do jeito errado. A análise não erra de propósito: ela julga o que recebeu.</p>
-      <p>Existe prazo para pedir revisão, e ele corre em silêncio — ninguém liga para avisar que está acabando.</p>
+      <p>Existe prazo para pedir revisão, e ele corre em silêncio. Ninguém liga para avisar que está acabando.</p>
       <p>Se você tem a carta em mãos, a nossa equipe lê e diz com clareza se vale tentar de novo. Sem custo para essa leitura.</p>
     </div>
 
@@ -774,7 +819,7 @@
 
     <p style="text-align:center;color:rgba(255,255,255,.86);margin:0">
       A Previmater é uma assessoria previdenciária particular, especializada em um assunto só:
-      salário-maternidade. Não somos órgão público e não trabalhamos para o governo — trabalhamos para você.
+      salário-maternidade. Não somos órgão público e não trabalhamos para o governo. Trabalhamos para você.
     </p>
   </div>
 </section>
@@ -789,7 +834,7 @@
       <div class="depo">
         <div class="ico-selo"><svg class="ico" aria-hidden="true"><use href="#i-carta"></use></svg></div>
         <h3>“Fui negada, então não tenho direito”</h3>
-        <p>É o motivo número um de quem procura a Previmater. E na maior parte das vezes o que faltou foi documento ou o pedido foi montado do jeito errado — não o direito em si.</p>
+        <p>É o motivo número um de quem procura a Previmater. Na maior parte das vezes o que faltou foi documento, ou o pedido foi montado do jeito errado. O direito em si costuma estar lá.</p>
       </div>
       <div class="depo">
         <div class="ico-selo"><svg class="ico" aria-hidden="true"><use href="#i-relogio"></use></svg></div>
@@ -799,11 +844,11 @@
       <div class="depo">
         <div class="ico-selo"><svg class="ico" aria-hidden="true"><use href="#i-escudo"></use></svg></div>
         <h3>“Eu estava desempregada quando ganhei”</h3>
-        <p>Sair do emprego não apaga a cobertura de imediato. Quem já contribuiu costuma seguir protegida por um tempo depois da saída — e é aí que muita gente desiste sem conferir.</p>
+        <p>Sair do emprego não apaga a cobertura de imediato. Quem já contribuiu costuma seguir protegida por um tempo depois da saída. É aí que muita gente desiste sem conferir.</p>
       </div>
     </div>
 
-    <p class="nota-prova">Ainda não publicamos depoimentos com nome e foto porque só publicamos com autorização por escrito de cada mãe. Os números acima — 12 anos, mais de 600 benefícios, mais de R$ 5 milhões — são verificáveis pelo CNPJ no rodapé.</p>
+    <p class="nota-prova">Ainda não publicamos depoimentos com nome e foto porque só publicamos com autorização por escrito de cada mãe. Os números que estão logo acima são verificáveis pelo CNPJ no rodapé.</p>
   </div>
 </section>
 
@@ -827,7 +872,7 @@
     </details>
     <details>
       <summary>Meu filho já tem 4 anos. Ainda dá tempo?</summary>
-      <p>O prazo é de até 5 anos contados do nascimento. Quanto mais perto do limite, mais urgente é olhar — o prazo corre sozinho e ninguém avisa quando fecha.</p>
+      <p>O prazo é de até 5 anos contados do nascimento. Quanto mais perto do limite, mais urgente é olhar. O prazo corre sozinho e ninguém avisa quando fecha.</p>
     </details>
     <details>
       <summary>Quanto custa a consulta?</summary>
@@ -852,20 +897,20 @@
 
     <div class="saida">
       <h3>Bebê já nascido e nenhuma contribuição antes do parto</h3>
-      <p>Esse benefício é da Previdência, e a Previdência paga para quem contribuiu. Se não houve nenhuma contribuição em nenhum emprego antes de o bebê nascer, não existe pedido a fazer — nem por nós, nem por ninguém.</p>
+      <p>Esse benefício é da Previdência, e a Previdência paga para quem contribuiu. Se não houve nenhuma contribuição em nenhum emprego antes de o bebê nascer, não existe pedido a fazer, nem por nós nem por ninguém.</p>
       <p>Você vai ver anúncio por aí dizendo o contrário. Não é verdade, e mandar mensagem para essas empresas só faz você perder tempo e, às vezes, dinheiro.</p>
 
-      <p style="margin-top:16px"><strong>O bebê nasceu há mais de 5 anos</strong> — aqui o prazo já fechou e não há como reabrir.</p>
+      <p style="margin-top:16px">Se <strong>o bebê nasceu há mais de 5 anos</strong>, o prazo já fechou e não há como reabrir.</p>
     </div>
 
     <div class="caminho">
       <h3>Agora, se você está grávida e nunca contribuiu</h3>
-      <p>Esse caso é diferente: ainda dá para se organizar. Quem se filia como contribuinte e cumpre o tempo mínimo antes do parto pode chegar ao benefício — mas depende de quanto tempo falta para o bebê nascer, e cada mês que passa fecha uma porta.</p>
+      <p>Esse caso é diferente: ainda dá para se organizar. Quem se filia como contribuinte e cumpre o tempo mínimo antes do parto pode chegar ao benefício. Mas depende de quanto tempo falta para o bebê nascer, e cada mês que passa fecha uma porta.</p>
       <p>A equipe explica em poucos minutos o que dá para fazer no seu caso, sem custo.</p>
       <div class="btn-bloco">
         <a class="btn" href="#" data-whats data-codigo="LPG" data-origem="saida-gravida">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-          <span class="rotulo">Estou grávida — quero entender meu caminho</span>
+          <span class="rotulo">Estou grávida e quero entender meu caminho</span>
         </a>
       </div>
     </div>
@@ -881,15 +926,16 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
       <span class="rotulo">Falar com a equipe agora</span>
     </a>
-    <p class="btn-nota">Consulta gratuita · Você só paga se o benefício sair</p>
+    <p class="btn-nota">Consulta gratuita. Você só paga se o benefício sair.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p class="rod-marca"><strong>Previmater</strong> — Assessoria Previdenciária</p>
+    <img class="rod-logo" src="/imagens/logo-branco.png" alt="Previmater" width="186" height="37" loading="lazy" decoding="async">
+    <p class="rod-marca">Assessoria Previdenciária</p>
     <p>Especializada em salário-maternidade há mais de 12 anos.<br>
-       RUA EXEMPLO, 000 — Centro, Curitiba/PR, CEP 00000-000<br>
+       Curitiba, Paraná<br>
        CNPJ 14.578.648/0001-54</p>
 
     <nav class="rod-links" aria-label="Páginas institucionais">
@@ -908,13 +954,13 @@
 <div class="barra" id="barra">
   <a class="btn" href="#" data-whats data-codigo="LP" data-origem="barra">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-    <span class="rotulo">Falar no WhatsApp — é grátis</span>
+    <span class="rotulo">Falar agora no WhatsApp</span>
   </a>
 </div>
 
 <script>
 /* =========================================================================
-   CONFIGURAÇÃO — o que você precisa preencher
+   O QUE VOCÊ PRECISA PREENCHER
    ========================================================================= */
 var CONFIG = {
   whatsapp: "5541999008221",   // com DDI e DDD, só dígitos
@@ -962,7 +1008,7 @@ var MENSAGENS = {
     return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(texto);
   }
 
-  /* Sem número válido todo CTA vira link morto — e morre calado.
+  /* Sem número válido todo CTA vira link morto, e morre calado.
      Melhor gritar na tela do que descobrir depois de gastar verba. */
   if (!numeroOk) {
     console.error("Previmater: CONFIG.whatsapp não foi preenchido. Os botões estão inertes.");
@@ -970,7 +1016,7 @@ var MENSAGENS = {
     aviso.setAttribute("role", "alert");
     aviso.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999;background:#B93144;" +
       "color:#fff;font:700 14px/1.4 system-ui,sans-serif;padding:11px 16px;text-align:center";
-    aviso.textContent = "⚠ Falta preencher CONFIG.whatsapp em index.html — nenhum botão está funcionando.";
+    aviso.textContent = "⚠ Falta preencher CONFIG.whatsapp em index.html. Nenhum botão está funcionando.";
     document.body.appendChild(aviso);
     // empurra a página para o aviso não cobrir o topo do hero
     document.body.style.paddingTop = aviso.getBoundingClientRect().height + "px";
