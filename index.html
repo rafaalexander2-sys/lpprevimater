@@ -311,10 +311,10 @@
   .figura.ausente{display:none}
   /* ilustração chapada não é foto: cartão com sombra em volta de um desenho
      de traço fino sobre branco lê como moldura vazia */
-  .figura-solta,
-  .figura-solta picture,
-  .figura-solta img{background:transparent;box-shadow:none;border-radius:0}
-  .figura-solta img{object-fit:contain}
+  /* A ilustração é SVG embutido, não arquivo. Sem requisição, sem formato,
+     sem canal alfa, sem cache: ou o HTML chega, ou nada chega. */
+  .figura-solta{background:transparent;box-shadow:none;border-radius:0}
+  .ilu-datas{display:block;width:100%;height:auto;max-width:760px;margin:0 auto}
   .escuro .figura,.preta .figura{background:rgba(255,255,255,.05);box-shadow:0 20px 44px -20px rgba(0,0,0,.6)}
   .figura-legenda{margin:12px 0 0;font-size:13.5px;color:var(--tinta-45);line-height:1.55;text-align:center}
   .escuro .figura-legenda{color:rgba(255,255,255,.68)}
@@ -839,12 +839,46 @@
     <p class="sub">Sem juntar papelada e sem pagar nada adiantado.</p>
 
     <figure class="figura figura-solta">
-      <picture>
-        <source type="image/avif" srcset="/imagens/duas-datas.avif">
-        <img src="/imagens/duas-datas.jpg" alt="Linha do tempo com dois marcos: a saída do serviço e o nascimento do bebê"
-             width="1627" height="445" loading="lazy" decoding="async" data-figura
-             style="aspect-ratio:1627/445">
-      </picture>
+      <svg class="ilu-datas" viewBox="0 0 800 210" role="img"
+           aria-label="Linha do tempo com dois marcos: a saída do serviço e o nascimento do bebê">
+        <g fill="none" stroke="#101819" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+
+          <!-- a linha do tempo -->
+          <path d="M18 152h675"/>
+          <path d="M706 152h18M736 152h18M766 152h14" opacity=".75"/>
+
+          <!-- faixa do período coberto -->
+          <rect x="168" y="143" width="352" height="18" rx="9"
+                fill="#007C85" fill-opacity=".22" stroke="none"/>
+
+          <!-- marco 1: a contribuição -->
+          <circle cx="152" cy="152" r="17" fill="#007C85"/>
+          <g stroke-width="3">
+            <path d="M96 44l-9-15M118 32l-3-17M79 66l-16-7"/>
+          </g>
+          <rect x="104" y="52" width="46" height="62" rx="5" fill="#2E4372"/>
+          <circle cx="127" cy="76" r="9" fill="none" stroke="#EDF6F7" stroke-width="2.6"/>
+          <path d="M127 67v18M118 76h18" stroke="#EDF6F7" stroke-width="2.6"/>
+          <path d="M138 40h44l14 14v66h-58z" fill="#FFFFFF"/>
+          <path d="M182 40v14h14" />
+          <g stroke-width="2.8" opacity=".85">
+            <path d="M148 70h34M148 84h34M148 98h22"/>
+          </g>
+
+          <!-- marco 2: o nascimento -->
+          <circle cx="537" cy="152" r="17" fill="#FC9FA7"/>
+          <!-- chocalho: bola, duas listras, cabo e conta -->
+          <path d="M541 88l-14 22" stroke-width="6"/>
+          <circle cx="524" cy="116" r="7.5" fill="#FC9FA7"/>
+          <circle cx="556" cy="58" r="31" fill="#FFFFFF"/>
+          <path d="M528 44c18 8 38 8 56 0" opacity=".9"/>
+          <path d="M528 72c18-8 38-8 56 0" opacity=".9"/>
+          <circle cx="556" cy="58" r="7" fill="#FC9FA7" stroke="none"/>
+          <g stroke-width="3">
+            <path d="M600 24l15-11M606 52l19-3M584 8l6-14"/>
+          </g>
+        </g>
+      </svg>
       <figcaption class="figura-legenda">São essas duas datas que decidem o caso: quando a contribuição parou e quando o bebê nasceu.</figcaption>
     </figure>
 

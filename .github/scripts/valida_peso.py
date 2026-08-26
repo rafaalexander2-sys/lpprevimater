@@ -4,7 +4,7 @@ import os, sys
 
 TETO_KB = 420
 SERVIDOS = ["hero-mobile.avif","carta-negativa.avif","gestante.avif",
-            "duas-datas.avif","logo-branco.png"]
+            "logo-branco.png"]
 
 total = 0
 for nome in SERVIDOS:
