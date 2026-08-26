@@ -20,8 +20,8 @@
 ## Páginas
 
 - [Página principal](https://previmater.com.br/): quem pode receber, prazos, valores e dúvidas frequentes.
-- [Quem somos](https://previmater.com.br/sobre.html): histórico, números e modelo de cobrança.
-- [Contato](https://previmater.com.br/contato.html): WhatsApp, e-mail, endereço e horário.
-- [Termos de uso](https://previmater.com.br/termos.html)
-- [Política de privacidade](https://previmater.com.br/privacidade.html)
-- [Política de cookies](https://previmater.com.br/cookies.html)
+- [Quem somos](https://previmater.com.br/sobre): histórico, números e modelo de cobrança.
+- [Contato](https://previmater.com.br/contato): WhatsApp, e-mail, endereço e horário.
+- [Termos de uso](https://previmater.com.br/termos)
+- [Política de privacidade](https://previmater.com.br/privacidade)
+- [Política de cookies](https://previmater.com.br/cookies)
