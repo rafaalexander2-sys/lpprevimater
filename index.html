@@ -331,8 +331,11 @@
   @media (min-width:820px){ .depos{grid-template-columns:repeat(3,1fr)} }
   .depo{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:19px}
   .depo{position:relative}
-  .depo .aspas{position:absolute;top:15px;right:16px;width:30px;height:30px;color:var(--teal);opacity:.13}
-  .depo p{margin:0 0 13px;font-size:16px;line-height:1.5}
+  .depo .ico-selo{margin:0 0 13px}
+  .depo h3{font-family:var(--tit);font-size:17px;font-weight:700;margin:0 0 8px;color:var(--teal-esc)}
+  .depo p{margin:0;font-size:16px;line-height:1.5;color:var(--tinta-2)}
+  .nota-prova{margin:22px 0 0;font-size:14.5px;line-height:1.55;color:var(--tinta-2);
+    padding:14px 16px;background:var(--branco);border-left:4px solid var(--teal);border-radius:0 9px 9px 0}
   .depo .estrelas{color:var(--rosa-esc);letter-spacing:2px;font-size:14px;margin:0 0 9px}
   .depo cite{font-style:normal;font-size:14px;font-weight:700;color:var(--teal);font-family:var(--tit)}
 
@@ -499,7 +502,6 @@
 
   <symbol id="i-gestante" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.2" cy="4.3" r="2.4"/><path d="M10.2 7.6c-1.7 0-2.7 1.1-2.9 2.7l-.5 4.4"/><path d="M10.2 7.6c3 0 5.4 2.1 5.4 4.7s-2.4 4.4-5.4 4.4"/><path d="M8.4 16.7l-.4 4.9M12.6 16.7l.5 4.9"/></g></symbol>
 
-  <symbol id="i-aspas" viewBox="0 0 24 24"><path d="M9.4 5.8c-3 1.5-4.6 3.9-4.6 7.1v5.3h6.2v-6H7.6c0-2 .8-3.4 2.6-4.4zm10.4 0c-3 1.5-4.6 3.9-4.6 7.1v5.3h6.2v-6H18c0-2 .8-3.4 2.6-4.4z" fill="currentColor"/></symbol>
 </defs></svg>
 
 
@@ -508,10 +510,9 @@
   <div class="hero-fundo" aria-hidden="true">
     <picture>
       <source media="(min-width:900px)" type="image/avif" srcset="/imagens/hero-desktop.avif">
-      <source media="(min-width:900px)" type="image/webp" srcset="/imagens/hero-desktop.webp">
+      <source media="(min-width:900px)" srcset="/imagens/hero-desktop.jpg">
       <source type="image/avif" srcset="/imagens/hero-mobile.avif">
-      <source type="image/webp" srcset="/imagens/hero-mobile.webp">
-      <img src="/imagens/hero-mobile.webp" alt="" width="1080" height="1600"
+      <img src="/imagens/hero-mobile.jpg" alt="" width="1080" height="1600"
            fetchpriority="high" decoding="async" data-figura>
     </picture>
   </div>
@@ -621,8 +622,7 @@
       <figure class="figura" data-proporcao="1-1" style="max-width:340px;margin:0 auto 20px">
         <picture>
           <source type="image/avif" srcset="/imagens/gestante.avif">
-          <source type="image/webp" srcset="/imagens/gestante.webp">
-          <img src="/imagens/gestante.webp" alt="Gestante em casa, apoiada na bancada da cozinha"
+          <img src="/imagens/gestante.jpg" alt="Gestante em casa, apoiada na bancada da cozinha"
                width="1200" height="1200" loading="lazy" decoding="async" data-figura>
         </picture>
       </figure>
@@ -679,8 +679,7 @@
     <figure class="figura" data-proporcao="7-5">
       <picture>
         <source type="image/avif" srcset="/imagens/carta-negativa.avif">
-        <source type="image/webp" srcset="/imagens/carta-negativa.webp">
-        <img src="/imagens/carta-negativa.webp" alt="Carta de indeferimento sobre a mesa da cozinha"
+        <img src="/imagens/carta-negativa.jpg" alt="Carta de indeferimento sobre a mesa da cozinha"
              width="1400" height="1000" loading="lazy" decoding="async" data-figura>
       </picture>
     </figure>
@@ -756,7 +755,7 @@
     <p class="sub">Mais de 12 anos cuidando disso, de Curitiba para o Brasil.</p>
 
     <figure class="figura" data-proporcao="16-9" style="margin-bottom:24px">
-      <img src="/imagens/equipe-curitiba.webp" alt="Equipe da Previmater no escritório em Curitiba"
+      <img src="/imagens/equipe-curitiba.jpg" alt="Equipe da Previmater no escritório em Curitiba"
            width="1600" height="900" loading="lazy" decoding="async" data-figura>
     </figure>
 
@@ -774,41 +773,31 @@
   </div>
 </section>
 
-<!-- ============ DEPOIMENTOS ============ -->
+<!-- ============ SITUAÇÕES ============ -->
 <section class="cinza">
   <div class="wrap">
-    <h2 class="titulo">O que as mães dizem</h2>
-    <p class="sub">Depoimentos de quem passou pelo processo com a gente.</p>
+    <h2 class="titulo">As situações que mais chegam aqui</h2>
+    <p class="sub">Se você se reconhecer em alguma, é porque não é caso isolado.</p>
 
     <div class="depos">
       <div class="depo">
-        <p class="estrelas">★★★★★</p>
-        <svg class="aspas" aria-hidden="true"><use href="#i-aspas"></use></svg>
-        <p>“Tentei sozinha e fui negada duas vezes. Achei que não tinha mais jeito. Refizeram tudo e o dinheiro caiu.”</p>
-        <div class="depo-quem">
-          <span class="depo-inicial" aria-hidden="true">AC</span>
-          <cite>NOME REAL<span class="depo-onde">CIDADE/UF</span></cite>
-        </div>
+        <div class="ico-selo"><svg class="ico" aria-hidden="true"><use href="#i-carta"></use></svg></div>
+        <h3>“Fui negada, então não tenho direito”</h3>
+        <p>É o motivo número um de quem procura a Previmater. E na maior parte das vezes o que faltou foi documento ou o pedido foi montado do jeito errado — não o direito em si.</p>
       </div>
       <div class="depo">
-        <p class="estrelas">★★★★★</p>
-        <svg class="aspas" aria-hidden="true"><use href="#i-aspas"></use></svg>
-        <p>“Eu nem sabia que ainda dava tempo, meu filho já tinha três anos. Me explicaram tudo com calma pelo WhatsApp.”</p>
-        <div class="depo-quem">
-          <span class="depo-inicial" aria-hidden="true">JS</span>
-          <cite>NOME REAL<span class="depo-onde">CIDADE/UF</span></cite>
-        </div>
+        <div class="ico-selo"><svg class="ico" aria-hidden="true"><use href="#i-relogio"></use></svg></div>
+        <h3>“Já passou do prazo”</h3>
+        <p>Muita mãe acredita que valia só nos primeiros meses. O prazo é de até 5 anos contados do nascimento, e ele corre em silêncio: ninguém liga para avisar que está fechando.</p>
       </div>
       <div class="depo">
-        <p class="estrelas">★★★★★</p>
-        <svg class="aspas" aria-hidden="true"><use href="#i-aspas"></use></svg>
-        <p>“Não paguei nada para começar. Mandei as datas, eles cuidaram do resto e me avisavam de cada passo.”</p>
-        <div class="depo-quem">
-          <span class="depo-inicial" aria-hidden="true">MR</span>
-          <cite>NOME REAL<span class="depo-onde">CIDADE/UF</span></cite>
-        </div>
+        <div class="ico-selo"><svg class="ico" aria-hidden="true"><use href="#i-escudo"></use></svg></div>
+        <h3>“Eu estava desempregada quando ganhei”</h3>
+        <p>Sair do emprego não apaga a cobertura de imediato. Quem já contribuiu costuma seguir protegida por um tempo depois da saída — e é aí que muita gente desiste sem conferir.</p>
       </div>
     </div>
+
+    <p class="nota-prova">Ainda não publicamos depoimentos com nome e foto porque só publicamos com autorização por escrito de cada mãe. Os números acima — 12 anos, mais de 600 benefícios, mais de R$ 5 milhões — são verificáveis pelo CNPJ no rodapé.</p>
   </div>
 </section>
 
