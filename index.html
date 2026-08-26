@@ -163,10 +163,15 @@
   /* fundo fotográfico do hero, sob o véu teal */
   .hero{position:relative;isolation:isolate}
   .hero-fundo{position:absolute;inset:0;z-index:-2;overflow:hidden}
-  .hero-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+  .hero-fundo img{
+    width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+    /* a janela da foto tem luminância 0,91 — texto branco em cima dela reprova
+       mesmo com véu de 94%. brightness(.55) derruba o pico para ~0,27 linear. */
+    filter:brightness(.55) saturate(.92)
+  }
   .hero::after{
     content:"";position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(180deg,rgba(0,124,133,.90) 0%,rgba(0,124,133,.86) 45%,rgba(0,95,102,.94) 100%)
+    background:linear-gradient(180deg,rgba(0,124,133,.84) 0%,rgba(0,124,133,.80) 42%,rgba(0,95,102,.90) 100%)
   }
   /* sem foto, o teal chapado assume e nada quebra */
   .hero:not(:has(.hero-fundo img[src]))::after{background:var(--teal)}
@@ -509,8 +514,6 @@
 <header class="hero">
   <div class="hero-fundo" aria-hidden="true">
     <picture>
-      <source media="(min-width:900px)" type="image/avif" srcset="/imagens/hero-desktop.avif">
-      <source media="(min-width:900px)" srcset="/imagens/hero-desktop.jpg">
       <source type="image/avif" srcset="/imagens/hero-mobile.avif">
       <img src="/imagens/hero-mobile.jpg" alt="" width="1080" height="1600"
            fetchpriority="high" decoding="async" data-figura>
@@ -706,9 +709,12 @@
     <h2 class="titulo">Como funciona</h2>
     <p class="sub">Sem juntar papelada e sem pagar nada adiantado.</p>
 
-    <figure class="figura" data-proporcao="4-3" style="background:transparent">
-      <img src="/imagens/duas-datas.svg" alt="Linha do tempo com dois marcos: a saída do serviço e o nascimento do bebê"
-           width="1200" height="900" loading="lazy" decoding="async" data-figura>
+    <figure class="figura" data-proporcao="16-9" style="background:transparent">
+      <picture>
+        <source type="image/avif" srcset="/imagens/duas-datas.avif">
+        <img src="/imagens/duas-datas.jpg" alt="Linha do tempo com dois marcos: a saída do serviço e o nascimento do bebê"
+             width="1600" height="901" loading="lazy" decoding="async" data-figura>
+      </picture>
       <figcaption class="figura-legenda">São essas duas datas que decidem o caso: quando a contribuição parou e quando o bebê nasceu.</figcaption>
     </figure>
 

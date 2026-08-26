@@ -5,3 +5,6 @@ node_modules/
 test-results/
 playwright-report/
 .lighthouseci/
+
+# masters das imagens: pesados e não servidos
+imagens/originais/
