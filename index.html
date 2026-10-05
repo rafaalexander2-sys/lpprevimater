@@ -155,6 +155,19 @@
   .btn svg{flex:none;width:22px;height:22px;fill:currentColor;opacity:.82}
   .btn-nota{margin:13px 0 0;font-size:14.5px;color:var(--tinta-45);text-align:center;line-height:1.5}
   .btn-bloco{margin:24px 0 0}
+  /* Campo de atribuição: aparece somente na variante com telefone. */
+  .pm-so-telefone{display:none;width:100%;max-width:440px;margin:0 auto 16px;text-align:left}
+  [data-pm-variante="telefone"] .pm-so-telefone{display:block}
+  .pm-so-telefone label{display:block;font-weight:600;font-size:15px;margin-bottom:7px}
+  .pm-so-telefone input{display:block;width:100%;padding:14px 16px;border:1px solid var(--linha);
+    border-radius:12px;background:#fff;color:var(--tinta);font:inherit;font-size:16px}
+  .pm-so-telefone input:focus{outline:2px solid var(--rosa);outline-offset:2px}
+  .pm-so-telefone input[aria-invalid="true"]{border-color:#B93144}
+  .pm-so-telefone small{display:block;margin-top:7px;font-size:13px;line-height:1.5}
+  .pm-so-telefone [data-pm-erro]{color:#B93144;font-weight:600}
+  .pm-so-telefone [hidden]{display:none}
+  .escuro .pm-so-telefone [data-pm-erro],.preta .pm-so-telefone [data-pm-erro]{color:#FFD3D8}
+
   .escuro .btn-nota,.preta .btn-nota{color:rgba(255,255,255,.7)}
 
   /* ================= SUPERFÍCIES ================= */
@@ -773,6 +786,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="btn-bloco">
+        <div class="pm-so-telefone">
+          <label for="pm-telefone-1">Seu WhatsApp com DDD</label>
+          <input id="pm-telefone-1" name="telefone" data-pm-telefone type="tel" inputmode="tel"
+                 autocomplete="tel" placeholder="(41) 99999-9999" aria-describedby="pm-telefone-1-nota pm-telefone-1-erro">
+          <small id="pm-telefone-1-erro" data-pm-erro hidden>Digite seu WhatsApp com DDD para continuar.</small>
+          <small id="pm-telefone-1-nota">Usamos seu número para identificar seu atendimento. <a href="/privacidade">Privacidade</a>.</small>
+        </div>
         <a class="btn" href="#" data-whats data-codigo="LP" data-origem="casos-bebe">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
           <span class="rotulo">Já contribuí, quero conferir meu caso</span>
@@ -823,6 +843,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="btn-bloco">
+        <div class="pm-so-telefone">
+          <label for="pm-telefone-2">Seu WhatsApp com DDD</label>
+          <input id="pm-telefone-2" name="telefone" data-pm-telefone type="tel" inputmode="tel"
+                 autocomplete="tel" placeholder="(41) 99999-9999" aria-describedby="pm-telefone-2-nota pm-telefone-2-erro">
+          <small id="pm-telefone-2-erro" data-pm-erro hidden>Digite seu WhatsApp com DDD para continuar.</small>
+          <small id="pm-telefone-2-nota">Usamos seu número para identificar seu atendimento. <a href="/privacidade">Privacidade</a>.</small>
+        </div>
         <a class="btn" href="#" data-whats data-codigo="LPG" data-origem="casos-gravida">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
           <span class="rotulo">Estou grávida e quero falar com a equipe</span>
@@ -855,6 +882,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="btn-bloco">
+      <div class="pm-so-telefone">
+        <label for="pm-telefone-3">Seu WhatsApp com DDD</label>
+        <input id="pm-telefone-3" name="telefone" data-pm-telefone type="tel" inputmode="tel"
+               autocomplete="tel" placeholder="(41) 99999-9999" aria-describedby="pm-telefone-3-nota pm-telefone-3-erro">
+        <small id="pm-telefone-3-erro" data-pm-erro hidden>Digite seu WhatsApp com DDD para continuar.</small>
+        <small id="pm-telefone-3-nota">Usamos seu número para identificar seu atendimento. <a href="/privacidade">Privacidade</a>.</small>
+      </div>
       <a class="btn" href="#" data-whats data-codigo="LPN" data-origem="negativa">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
         <span class="rotulo">Tenho uma carta de negativa</span>
@@ -942,6 +976,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ol>
 
     <div class="btn-bloco">
+      <div class="pm-so-telefone">
+        <label for="pm-telefone-4">Seu WhatsApp com DDD</label>
+        <input id="pm-telefone-4" name="telefone" data-pm-telefone type="tel" inputmode="tel"
+               autocomplete="tel" placeholder="(41) 99999-9999" aria-describedby="pm-telefone-4-nota pm-telefone-4-erro">
+        <small id="pm-telefone-4-erro" data-pm-erro hidden>Digite seu WhatsApp com DDD para continuar.</small>
+        <small id="pm-telefone-4-nota">Usamos seu número para identificar seu atendimento. <a href="/privacidade">Privacidade</a>.</small>
+      </div>
       <a class="btn" href="#" data-whats data-codigo="LP" data-origem="como">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
         <span class="rotulo">Quero fazer a consulta gratuita</span>
@@ -1066,6 +1107,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Esse caso é diferente: ainda dá para se organizar. Quem se filia como contribuinte e cumpre o tempo mínimo antes do parto pode chegar ao benefício. Mas depende de quanto tempo falta para o bebê nascer, e cada mês que passa fecha uma porta.</p>
       <p>A equipe explica em poucos minutos o que dá para fazer no seu caso, sem custo.</p>
       <div class="btn-bloco">
+        <div class="pm-so-telefone">
+          <label for="pm-telefone-5">Seu WhatsApp com DDD</label>
+          <input id="pm-telefone-5" name="telefone" data-pm-telefone type="tel" inputmode="tel"
+                 autocomplete="tel" placeholder="(41) 99999-9999" aria-describedby="pm-telefone-5-nota pm-telefone-5-erro">
+          <small id="pm-telefone-5-erro" data-pm-erro hidden>Digite seu WhatsApp com DDD para continuar.</small>
+          <small id="pm-telefone-5-nota">Usamos seu número para identificar seu atendimento. <a href="/privacidade">Privacidade</a>.</small>
+        </div>
         <a class="btn" href="#" data-whats data-codigo="LPG" data-origem="saida-gravida">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
           <span class="rotulo">Estou grávida e quero entender meu caminho</span>
@@ -1081,6 +1129,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="titulo">O prazo corre mesmo quando ninguém avisa</h2>
     <p class="sub">Se você já contribuiu e o bebê tem menos de 5 anos, vale falar com a equipe hoje. A análise é gratuita e leva poucos minutos.</p>
     <div class="btn-bloco">
+    <div class="pm-so-telefone">
+      <label for="pm-telefone-6">Seu WhatsApp com DDD</label>
+      <input id="pm-telefone-6" name="telefone" data-pm-telefone type="tel" inputmode="tel"
+             autocomplete="tel" placeholder="(41) 99999-9999" aria-describedby="pm-telefone-6-nota pm-telefone-6-erro">
+      <small id="pm-telefone-6-erro" data-pm-erro hidden>Digite seu WhatsApp com DDD para continuar.</small>
+      <small id="pm-telefone-6-nota">Usamos seu número para identificar seu atendimento. <a href="/privacidade">Privacidade</a>.</small>
+    </div>
     <a class="btn" href="#" data-whats data-codigo="LP" data-origem="fecho">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43-.14 0-.31-.01-.47-.01-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
       <span class="rotulo">Falar com a equipe agora</span>
@@ -1356,5 +1411,6 @@ var MENSAGENS = {
 })();
 </script>
 
+<script src="/lp-atribuicao.js"></script>
 </body>
 </html>
